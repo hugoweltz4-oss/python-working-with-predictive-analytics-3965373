@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler, StandardScaler
 from sklearn.model_selection import train_test_split
 
 # Load the dataset
@@ -41,5 +41,19 @@ y_final = data['charges']
 X_train, X_test, y_train, y_test = train_test_split(X_final, y_final, test_size=0.33, random_state=0)
 
 # TODO: Normalize the training and test sets using MinMaxScaler
+n_scaler = MinMaxScaler()
+
+X_train_norm = n_scaler.fit_transform(X_train)
+X_test_norm = n_scaler.fit_transform(X_test)
+
+print("\nNormalized training data:\n", X_train_norm[:5])
+print("\nNormalized test data:\n", X_test_norm[:5])
 
 # TODO: Standardize the training and test sets using StandardScaler
+s_scaler = StandardScaler()
+
+X_train_stand = s_scaler.fit_transform(X_train)
+X_test_stand = s_scaler.fit_transform(X_test)
+
+print("\nStandardized training data:\n", X_train_stand[:5])
+print("\nStandardized test data:\n", X_test_stand[:5])
